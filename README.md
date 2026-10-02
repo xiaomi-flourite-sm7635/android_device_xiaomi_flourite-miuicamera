@@ -44,8 +44,10 @@ on direct core-app access to `/mnt/vendor`; calibration remains HAL-owned.
 
 HAL client attributes are Android-only: recovery does not install MiCAM and
 its non-Treble macro expansion would inherit permissions meant for the camera
-HAL itself. The new public app domain is declared in the 202604 compatibility
+HAL itself. The new public app domain is declared in the 202504 compatibility
 ignore map, inherited by older maps, because no older policy contains it.
+202504 is the latest older API for the current 202604 platform: Soong skips
+compatibility maps whose version equals the current platform API.
 
 ## Pre-build checks
 
