@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+app_domain(miuicamera_app)
+priv_app_domain(miuicamera_app)
+net_domain(miuicamera_app)
+bluetooth_domain(miuicamera_app)
+hal_client_domain(miuicamera_app, hal_camera)
+
+# Same application-facing services as other privileged camera apps.
+binder_call(miuicamera_app, surfaceflinger)

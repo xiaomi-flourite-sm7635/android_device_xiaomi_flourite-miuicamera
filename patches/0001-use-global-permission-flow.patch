@@ -1,0 +1,17 @@
+Subject: [PATCH] flourite: use the global permission flow without Security Center
+
+Adapted from AdarshGrewal's mod_device fix in the rodin-miuicamera tree.
+Target: flourite Camera 6.4.000320.1 (OS3.0.304.0.WPRMIXM).
+
+diff --git a/smali_classes4/G7/c.smali b/smali_classes4/G7/c.smali
+--- a/smali_classes4/G7/c.smali
++++ b/smali_classes4/G7/c.smali
+@@ -233,7 +233,7 @@
+ 
+     invoke-virtual {v0, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+ 
+-    move-result v0
++    const/4 v0, 0x1
+ 
+     sput-boolean v0, LG7/c;->m:Z
+ 

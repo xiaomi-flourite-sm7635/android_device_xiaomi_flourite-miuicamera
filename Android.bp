@@ -1,0 +1,30 @@
+// SPDX-FileCopyrightText: 2026 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+
+soong_namespace {
+    imports: [
+        "vendor/xiaomi/flourite",
+        "vendor/xiaomi/flourite-miuicamera",
+    ],
+}
+
+android_app_import {
+    name: "MiuiCamera",
+    owner: "xiaomi",
+    apk: ":MiuiCamera-flourite-apk",
+    certificate: "platform",
+    privileged: true,
+    overrides: [
+        "Camera",
+        "Camera2",
+    ],
+    optional_uses_libs: [
+        "miui-cameraopt",
+        "androidx.window.extensions",
+        "androidx.window.sidecar",
+    ],
+    enforce_uses_libs: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
