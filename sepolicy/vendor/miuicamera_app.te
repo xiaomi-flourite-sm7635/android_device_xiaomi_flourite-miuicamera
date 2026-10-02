@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 # Reuse flourite's existing provider; do not add a second MIVI/BGService HAL.
-hal_client_domain(miuicamera_app, hal_camera_mivi)
-hal_client_domain(miuicamera_app, hal_aidlbgservice)
+not_recovery(`
+  hal_client_domain(miuicamera_app, hal_camera_mivi)
+  hal_client_domain(miuicamera_app, hal_aidlbgservice)
+')
 
 # Keep persist/calibration access in the vendor HAL. A core app must not
 # traverse /mnt/vendor; do not add a Treble neverallow exception for it.

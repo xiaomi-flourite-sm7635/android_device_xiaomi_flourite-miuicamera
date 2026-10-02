@@ -1,0 +1,7 @@
+;; MiCAM's application domain is new to this system_ext policy and has no
+;; counterpart in older vendor policies. Earlier mappings inherit this list.
+(type new_objects)
+(typeattribute new_objects)
+(typeattributeset new_objects
+  ( new_objects
+    miuicamera_app))

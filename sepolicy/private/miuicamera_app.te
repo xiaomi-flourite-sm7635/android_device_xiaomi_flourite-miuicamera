@@ -3,7 +3,11 @@ app_domain(miuicamera_app)
 priv_app_domain(miuicamera_app)
 net_domain(miuicamera_app)
 bluetooth_domain(miuicamera_app)
-hal_client_domain(miuicamera_app, hal_camera)
+# MiCAM is not installed in recovery. Its non-Treble HAL client expansion
+# would inherit camera HAL permissions that are forbidden for app domains.
+not_recovery(`
+  hal_client_domain(miuicamera_app, hal_camera)
+')
 
 # Same application-facing services as other privileged camera apps.
 binder_call(miuicamera_app, surfaceflinger)

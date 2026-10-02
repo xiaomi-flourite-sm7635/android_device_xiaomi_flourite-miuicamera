@@ -42,6 +42,11 @@ requested by this APK. The camera domain is enforcing and uses the existing
 camera/MIVI/BGService HAL interfaces. It does not bypass the platform neverallow
 on direct core-app access to `/mnt/vendor`; calibration remains HAL-owned.
 
+HAL client attributes are Android-only: recovery does not install MiCAM and
+its non-Treble macro expansion would inherit permissions meant for the camera
+HAL itself. The new public app domain is declared in the 202604 compatibility
+ignore map, inherited by older maps, because no older policy contains it.
+
 ## Pre-build checks
 
 Extraction and APK repacking were tested with the stock version above. The
