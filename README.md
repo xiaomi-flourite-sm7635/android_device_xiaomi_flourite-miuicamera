@@ -12,7 +12,7 @@ Previous flourite 6.4.000320.1 stock APK SHA-256 (historical reference):
 The integration layout and resource-loader fix follow the local
 [rodin camera tree](https://github.com/Digimend-X-Rodin/android_proprietary_device_xiaomi_rodin-miuicamera).
 The 6.7 app already contains Flourite, Flourite_pro and Flourite_pre profiles.
-The three Flourite patches in `patches-6.7/` are applied to the pinned base,
+The Flourite patches in `patches-6.7/` are applied to the pinned base,
 which already includes Rodin's AOSP resource and permission-flow fixes.
 The old `patches/` directory is retained only as the 6.4 reference. No rodin device
 spoofing, MediaTek libraries, forced Leica/RAW modes,
@@ -92,10 +92,16 @@ to the binary manifest, preserving existing string indices and XML nodes.
 The stock manifest already requests the camera foreground-service permission.
 Do not rebuild the obfuscated resources with apktool: the extraction flow
 uses no-res mode, preserving resources, assets and bundled native libraries.
-Against the pinned 6.7 input, only the manifest, `classes.dex` (tracking and
-its settings), `classes4.dex` (capabilities and Flourite mode list), and
+Against the pinned 6.7 input, only the manifest, `classes.dex` (tracking,
+its settings and brightness cleanup), `classes4.dex` (capabilities and Flourite mode list), and
 `classes5.dex` (processing) change, plus the new DEX.
 `tools/test_camera_manifest.py` checks malformed inputs and preservation.
+
+Patch 0006 releases the temporary auto-brightness adjustment with `Float.NaN`
+on normal and exception cleanup. A zero adjustment remains active on AOSP
+and suppresses brightness animation after leaving the app. The active camera
+boost, internal bookkeeping and window-based screen flash are unchanged.
+`tools/test_camera_brightness.py` covers both release paths and patch scope.
 
 ## Night, video tracking and launcher icon (October 4, firmware 306)
 
