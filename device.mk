@@ -9,6 +9,7 @@ PRODUCT_SOONG_NAMESPACES += $(FLOURITE_MIUI_CAMERA_PATH)
 
 PRODUCT_PACKAGES += \
     MiuiCamera \
+    MiuiCameraOverlayFlourite \
     manifest_flourite_mivi.xml
 
 PRODUCT_COPY_FILES += \

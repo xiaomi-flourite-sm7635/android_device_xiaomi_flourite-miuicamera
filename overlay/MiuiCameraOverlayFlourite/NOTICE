@@ -1,0 +1,7 @@
+Icon foreground PNGs are taken unchanged from the MiuiCamera patch by Ido:
+https://github.com/xiaomi-mt6899-dev/android_device_xiaomi_rodin-miuicamera/blob/16.2/patches/MiuiCamera.patch
+Patch commit header: 389d36dbf40b825ba0b08b7be2c975b99209155f
+Original paths: res/mipmap-{xhdpi,xxhdpi,xxxhdpi}/etk_fg.png
+The white adaptive-icon background follows the same patch. The overlay targets
+the actual Camera 6.7 launcher resource, etk_ic_launcher, without rebuilding
+the obfuscated APK resources or importing any Rodin device logic.
