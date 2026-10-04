@@ -1,4 +1,4 @@
-# Native blobs: flourite global OS3.0.304.0.WPRMIXM, Android 16.
+# Native blobs: flourite global OS3.0.306.0.WPRMIXM, Android 16.
 # APK only: pinned 6.7 base selected via FLOURITE_MIUI_CAMERA_APK (see README).
 # No rodin/MediaTek vendor libraries. Aperture is used only without MiuiCamera.
 
