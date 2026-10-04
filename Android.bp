@@ -25,6 +25,9 @@ android_app_import {
     certificate: "platform",
     privileged: true,
     overrides: [
+        // Applied only when MiuiCamera is selected for the product.
+        "Aperture",
+        "ApertureOverlayFlourite",
         "Camera",
         "Camera2",
     ],

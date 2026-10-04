@@ -11,6 +11,7 @@
         <permission name="android.permission.MANAGE_USB" />
         <permission name="android.permission.READ_COMPAT_CHANGE_CONFIG" />
         <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND" />
+        <permission name="android.permission.START_TASKS_FROM_RECENTS" />
         <permission name="android.permission.SUBSCRIBE_TO_KEYGUARD_LOCKED_STATE" />
         <permission name="android.permission.SYSTEM_CAMERA" />
         <permission name="android.permission.TURN_SCREEN_ON" />
