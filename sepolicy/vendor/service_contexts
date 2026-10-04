@@ -1,0 +1,3 @@
+vendor.xiaomi.hardware.misys.common.IMiSysImpl/default u:object_r:hal_flourite_misys_service:s0
+vendor.xiaomi.hardware.misys.common.IHypSysIntl/default u:object_r:vendor_flourite_hypsys_service:s0
+vendor.xiaomi.hardware.blackbox.IBlackboxImpl/default u:object_r:vendor_flourite_blackbox_service:s0

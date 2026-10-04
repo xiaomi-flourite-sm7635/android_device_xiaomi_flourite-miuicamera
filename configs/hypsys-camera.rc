@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# Only the common MiSys server needed to transfer MiCAM watermark data to MIVI.
+# Do not import stock's logger triggers, kmsg FD, root groups or MiSysCore daemon.
+service vendor.misys.common /vendor/bin/hypsys_vendor
+    class hal
+    user system
+    group system camera
+    interface aidl vendor.xiaomi.hardware.misys.common.IMiSysImpl/default

@@ -8,3 +8,6 @@ include vendor/xiaomi/flourite-miuicamera/BoardConfigVendor.mk
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(FLOURITE_MIUI_CAMERA_PATH)/sepolicy/public
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(FLOURITE_MIUI_CAMERA_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(FLOURITE_MIUI_CAMERA_PATH)/sepolicy/vendor
+
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(FLOURITE_MIUI_CAMERA_PATH)/configs/compatibility_matrix.xml

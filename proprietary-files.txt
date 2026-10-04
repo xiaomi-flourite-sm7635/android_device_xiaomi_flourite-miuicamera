@@ -6,3 +6,12 @@ system_ext/lib64/libcamera_algoup_jni.xiaomi.so:system/lib64/libcamera_algoup_jn
 system_ext/lib64/libcamera_mianode_jni.xiaomi.so:system/lib64/libcamera_mianode_jni.xiaomi.so;SYMLINK=system/priv-app/MiuiCamera/lib/arm64/libcamera_mianode_jni.xiaomi.so
 system_ext/lib64/libmicampostproc_client.so:system/lib64/libmicampostproc_client.so;SYMLINK=system/priv-app/MiuiCamera/lib/arm64/libmicampostproc_client.so
 system_ext/lib64/vendor.xiaomi.hardware.campostproc@1.0.so:system/lib64/vendor.xiaomi.hardware.campostproc@1.0.so
+
+# MiSys
+# Stock common service hosts MiSys and two auxiliary interfaces. Keep the core
+# interface library for linking, but do NOT install its privileged root daemon.
+vendor/bin/hypsys_vendor
+vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys.common.xml
+vendor/lib64/vendor.xiaomi.hardware.blackbox-V1-ndk.so
+vendor/lib64/vendor.xiaomi.hardware.misys.common-V3-ndk.so
+vendor/lib64/vendor.xiaomi.hardware.misys.core-V1-ndk.so

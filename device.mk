@@ -10,6 +10,7 @@ PRODUCT_SOONG_NAMESPACES += $(FLOURITE_MIUI_CAMERA_PATH)
 PRODUCT_PACKAGES += MiuiCamera
 
 PRODUCT_COPY_FILES += \
+    $(FLOURITE_MIUI_CAMERA_PATH)/configs/hypsys-camera.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hypsys-camera.rc \
     $(FLOURITE_MIUI_CAMERA_PATH)/configs/default-permissions-miuicamera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-miuicamera.xml \
     $(FLOURITE_MIUI_CAMERA_PATH)/configs/privapp-permissions-miuicamera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-miuicamera.xml \
     $(FLOURITE_MIUI_CAMERA_PATH)/configs/miuicamera-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/miuicamera-hiddenapi-package-whitelist.xml \

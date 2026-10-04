@@ -3,7 +3,16 @@
 not_recovery(`
   hal_client_domain(miuicamera_app, hal_camera_mivi)
   hal_client_domain(miuicamera_app, hal_aidlbgservice)
+  hal_client_domain(miuicamera_app, vendor_hal_qspmhal)
+  hal_client_domain(miuicamera_app, hal_flourite_misys)
 ')
+
+# Read the provider's published capabilities, not vendor_default_prop.
+get_prop(miuicamera_app, vendor_camera_info_prop)
+get_prop(miuicamera_app, vendor_camera_sensor_prop)
+get_prop(miuicamera_app, vendor_camera_p3enable_prop)
+get_prop(miuicamera_app, vendor_displayfeature_prop)
+get_prop(miuicamera_app, vendor_audio_prop)
 
 # Keep persist/calibration access in the vendor HAL. A core app must not
 # traverse /mnt/vendor; do not add a Treble neverallow exception for it.

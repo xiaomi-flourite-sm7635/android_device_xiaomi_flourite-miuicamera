@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: Apache-2.0
+hal_attribute(flourite_misys)
+
+type vendor_flourite_misys, domain;
+type vendor_flourite_misys_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(vendor_flourite_misys)
+hal_server_domain(vendor_flourite_misys, hal_flourite_misys)
+binder_use(vendor_flourite_misys)
+
+type hal_flourite_misys_service, hal_service_type, protected_service, service_manager_type;
+hal_attribute_service(hal_flourite_misys, hal_flourite_misys_service)
+binder_call(hal_flourite_misys_client, hal_flourite_misys_server)
+
+# MiCAM sends ashmem FDs containing watermark assets to the vendor service.
+# binder_call permits the opposite FD direction, not this server-side use.
+allow vendor_flourite_misys miuicamera_app:fd use;
+# Read/map watermark assets from an app-supplied ashmem FD. Do not permit
+# opening app files or writing into app-owned shared memory.
+allow vendor_flourite_misys appdomain_tmpfs:file { getattr read map };
+get_prop(vendor_flourite_misys, vendor_camera_sensor_prop)
+
+# The stock executable also registers these interfaces. Give it registration
+# rights, but do not expose them to the camera or grant their diagnostic I/O.
+type vendor_flourite_hypsys_service, hal_service_type, protected_service, service_manager_type;
+type vendor_flourite_blackbox_service, hal_service_type, protected_service, service_manager_type;
+add_service(vendor_flourite_misys, vendor_flourite_hypsys_service)
+add_service(vendor_flourite_misys, vendor_flourite_blackbox_service)
+
+# MiCAM sends the contents over Binder; it need not expose its private app data
+# or access persist directly. Limit the common server to the camera data area.
+allow vendor_flourite_misys vendor_camera_data_file:dir create_dir_perms;
+allow vendor_flourite_misys vendor_camera_data_file:file create_file_perms;

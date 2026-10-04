@@ -11,3 +11,6 @@ not_recovery(`
 
 # Same application-facing services as other privileged camera apps.
 binder_call(miuicamera_app, surfaceflinger)
+
+# Stock MiCAM's hardware detection reads this public, non-sensitive property.
+get_prop(miuicamera_app, qemu_hw_prop)
