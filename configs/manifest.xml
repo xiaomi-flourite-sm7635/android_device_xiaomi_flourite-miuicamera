@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest version="1.0" type="device">
+    <!-- MIVI final-image callbacks, served by the existing camera provider. -->
+    <hal format="aidl">
+        <name>vendor.xiaomi.hardware.aidlbgservice</name>
+        <version>1</version>
+        <interface>
+            <name>IBGService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</manifest>

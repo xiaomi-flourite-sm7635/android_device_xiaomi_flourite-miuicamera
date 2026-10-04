@@ -7,7 +7,9 @@ $(call inherit-product, vendor/xiaomi/flourite-miuicamera/flourite-miuicamera-ve
 
 PRODUCT_SOONG_NAMESPACES += $(FLOURITE_MIUI_CAMERA_PATH)
 
-PRODUCT_PACKAGES += MiuiCamera
+PRODUCT_PACKAGES += \
+    MiuiCamera \
+    manifest_flourite_mivi.xml
 
 PRODUCT_COPY_FILES += \
     $(FLOURITE_MIUI_CAMERA_PATH)/configs/hypsys-camera.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hypsys-camera.rc \

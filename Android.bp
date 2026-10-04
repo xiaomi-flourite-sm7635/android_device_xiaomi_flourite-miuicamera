@@ -8,6 +8,16 @@ soong_namespace {
     ],
 }
 
+// A standalone fragment is loaded for both the generic and volcano SKU
+// manifests. DEVICE_MANIFEST_FILE alone only changes the generic manifest.
+prebuilt_etc_xml {
+    name: "manifest_flourite_mivi.xml",
+    src: "configs/manifest.xml",
+    filename: "manifest_flourite_mivi.xml",
+    sub_dir: "vintf/manifest",
+    soc_specific: true,
+}
+
 android_app_import {
     name: "MiuiCamera",
     owner: "xiaomi",
