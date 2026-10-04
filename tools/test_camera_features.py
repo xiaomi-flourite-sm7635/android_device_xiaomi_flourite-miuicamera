@@ -7,6 +7,17 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 
 class CameraFeaturesTest(unittest.TestCase):
+    def test_night_entry_enabled_only_in_flourite_profile(self):
+        patch = (ROOT / 'patches-6.7/0007-enable-flourite-night-module-entry.patch').read_text()
+        targets = [line for line in patch.splitlines() if line.startswith('+++ ')]
+        self.assertEqual(len(targets), 1)
+        self.assertIn('學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali', targets[0])
+        self.assertIn('.method public final Z6()Z', patch)
+        self.assertIn('-    const/4 p0, 0x0', patch)
+        self.assertIn('+    const/4 p0, 0x1', patch)
+        added = [line for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++')]
+        self.assertEqual(added, ['+    const/4 p0, 0x1'])
+
     def test_feature_patch_keeps_hardware_checks_and_user_choice(self):
         patch = (ROOT / 'patches-6.7/0005-flourite-night-and-video-tracking.patch').read_text()
         added = '\n'.join(line[1:] for line in patch.splitlines() if line.startswith('+') and not line.startswith('+++'))

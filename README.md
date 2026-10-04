@@ -107,7 +107,9 @@ boost, internal bookkeeping and window-based screen flash are unchanged.
 
 Patch 0005 adds the existing Night mode (173) to the Flourite_pro default mode
 strip inherited by Flourite. Saved custom mode orders are not overwritten.
-Stock night pipelines and capability checks are retained.
+Patch 0007 enables that profile's Night module-entry flag, so the module is
+not filtered out before the main strip and More menu are populated.
+Stock native night pipelines and camera capability checks are retained.
 
 For normal video (162), motion tracking defaults on only if the current camera
 advertises TrackAF support. Existing saved preferences, quality/fps restrictions

@@ -1,0 +1,21 @@
+Subject: [PATCH] flourite: enable the Night module entry in the device profile
+
+Adding mode 173 to the default order is insufficient while the Flourite_pro
+isSupportedSuperNightScene flag remains false: NightModuleEntry.support()
+filters it out before either the main strip or More menu is populated.
+
+Enable the profile flag inherited by Flourite. Do not alter the global
+module entry, saved mode order, camera metadata or native night pipelines.
+
+diff --git a/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali b/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
+--- a/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
++++ b/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
+@@ -1063,7 +1063,7 @@
+ .method public final Z6()Z
+     .locals 0
+ 
+-    const/4 p0, 0x0
++    const/4 p0, 0x1
+ 
+     return p0
+ .end method
