@@ -32,7 +32,7 @@ class CameraVersionTest(unittest.TestCase):
             preserve_base_payload(base, assembled, output)
         with zipfile.ZipFile(result) as result:
             for name in result.namelist():
-                expected = b'assembled' if name in ('classes4.dex', 'classes5.dex') else b'base'
+                expected = b'assembled' if name in ('classes.dex', 'classes4.dex', 'classes5.dex') else b'base'
                 if name.startswith('assets/'):
                     expected = b'keep'
                 self.assertEqual(result.read(name), expected)

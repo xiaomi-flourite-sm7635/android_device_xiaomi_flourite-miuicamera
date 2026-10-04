@@ -11,7 +11,7 @@ from camera_apk_source import pinned_camera_apk
 
 
 def preserve_base_payload(base, assembled, output):
-    """Only retain apktool output for the two DEX files our patches touch."""
+    """Only retain apktool output for the three DEX files our patches touch."""
     processing_dex_name(base.namelist())
     processing_dex_name(assembled.namelist())
     if sorted(base.namelist()) != sorted(assembled.namelist()):
@@ -20,7 +20,7 @@ def preserve_base_payload(base, assembled, output):
         name = entry.filename
         before = base.read(entry)
         after = assembled.read(name)
-        if name in ('classes4.dex', 'classes5.dex'):
+        if name in ('classes.dex', 'classes4.dex', 'classes5.dex'):
             contents = after
         else:
             if not re.fullmatch(r'classes\d*\.dex', name) and before != after:

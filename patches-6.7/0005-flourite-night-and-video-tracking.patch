@@ -1,0 +1,86 @@
+Subject: [PATCH] flourite: expose Night and default supported video tracking on
+
+Keep actual HAL support, video quality/fps and mutex checks; saved user
+choices remain authoritative. Do not force tracking at 60 fps.
+
+diff --git a/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali b/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
+--- a/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
++++ b/smali_classes4/學孴孶嬵孶孲嬵孿孾孭孲學孾嬵孝孷孴孮孩孲孯孾孄孫孩孴.smali
+@@ -837,7 +837,7 @@
+ .method public final R()[I
+     .locals 0
+ 
+-    const/4 p0, 0x6
++    const/4 p0, 0x7
+ 
+     new-array p0, p0, [I
+ 
+@@ -853,6 +853,7 @@
+         0xa2
+         0xa3
+         0xab
++        0xad
+         0xa7
+         0xfe
+     .end array-data
+diff --git a/smali/v2/I.smali b/smali/v2/I.smali
+--- a/smali/v2/I.smali
++++ b/smali/v2/I.smali
+@@ -5,7 +5,31 @@
+ 
+ # virtual methods
+ .method public final getDefaultValue(I)Ljava/lang/String;
+-    .locals 0
++    .locals 1
++
++    const/16 v0, 0xa2
++
++    if-ne p1, v0, :flourite_default_off
++
++    invoke-static {}, Lx6/e;->V()Lx6/e;
++
++    move-result-object p0
++
++    invoke-virtual {p0}, Lx6/e;->b0()Ln9/f;
++
++    move-result-object p0
++
++    invoke-static {p0}, Ln9/g;->e4(Ln9/f;)Z
++
++    move-result p0
++
++    if-eqz p0, :flourite_default_off
++
++    const-string p0, "true"
++
++    return-object p0
++
++    :flourite_default_off
+ 
+     sget-object p0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+ 
+@@ -343,6 +367,13 @@
+     return v1
+ 
+     :cond_1
++    invoke-virtual {p0, p1}, Lv2/I;->getDefaultValue(I)Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-static {v1}, Ljava/lang/Boolean;->parseBoolean(Ljava/lang/String;)Z
++
++    move-result v1
+     iget-object v0, p0, Lcom/android/camera/data/data/c;->mParentDataItem:Lii/a;
+ 
+     invoke-virtual {p0, p1}, Lv2/I;->getKey(I)Ljava/lang/String;
+diff --git a/smali/com/android/camera/fragment/settings/CameraCamcorderPreferenceFragment.smali b/smali/com/android/camera/fragment/settings/CameraCamcorderPreferenceFragment.smali
+--- a/smali/com/android/camera/fragment/settings/CameraCamcorderPreferenceFragment.smali
++++ b/smali/com/android/camera/fragment/settings/CameraCamcorderPreferenceFragment.smali
+@@ -1548,6 +1548,6 @@
+ 
+     const-string v4, "pref_camera_track_focus_key_video"
+ 
+-    const/4 v5, 0x0
++    const/4 v5, 0x1
+ 
+     const v6, 0x7f140f97
