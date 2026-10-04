@@ -1,5 +1,6 @@
-# From flourite global OS3.0.304.0.WPRMIXM, Android 16.
-# Keep Aperture as a fallback during initial bring-up. No rodin/MediaTek blobs.
+# Native blobs: flourite global OS3.0.304.0.WPRMIXM, Android 16.
+# APK only: pinned 6.7 base selected via FLOURITE_MIUI_CAMERA_APK (see README).
+# No rodin/MediaTek vendor libraries. Aperture is used only without MiuiCamera.
 
 product/priv-app/MiuiCamera/MiuiCamera.apk:system/priv-app/MiuiCamera/MiuiCamera.apk;EXTRACT_ONLY;FILEGROUP=MiuiCamera-flourite-apk
 system_ext/lib64/libcamera_algoup_jni.xiaomi.so:system/lib64/libcamera_algoup_jni.xiaomi.so;SYMLINK=system/priv-app/MiuiCamera/lib/arm64/libcamera_algoup_jni.xiaomi.so

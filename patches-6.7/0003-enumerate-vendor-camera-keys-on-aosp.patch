@@ -1,0 +1,22 @@
+Subject: [PATCH] flourite: enumerate vendor camera keys outside HyperOS
+
+Port the working flourite static-capability enumeration to Camera 6.7.000070.0.
+Retain the native Flourite profiles and actual HAL feature values; do not
+spoof HyperOS or force unsupported capture modes.
+
+diff --git a/smali_classes4/n9/f.smali b/smali_classes4/n9/f.smali
+--- a/smali_classes4/n9/f.smali
++++ b/smali_classes4/n9/f.smali
+@@ -2150,12 +2150,6 @@
+ 
+     iput-object p2, p0, Ln9/f;->f:Ljava/util/HashMap;
+ 
+-    invoke-static {}, LBa/b;->p()Z
+-
+-    move-result p2
+-
+-    if-eqz p2, :cond_1
+-
+     invoke-static {p1}, Leq/b;->c(Landroid/hardware/camera2/CameraCharacteristics;)Landroid/hardware/camera2/impl/CameraMetadataNative;
+ 
+     move-result-object p2

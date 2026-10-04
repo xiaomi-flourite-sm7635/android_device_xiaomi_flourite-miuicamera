@@ -1,0 +1,26 @@
+Subject: [PATCH] flourite: enumerate vendor camera keys outside HyperOS
+
+CameraCapabilities uses the same key-name set for static characteristics and
+capture requests. Its non-HyperOS path only enumerates request keys, discarding
+stock beauty JSON/version, video configurations and RAW capabilities even when
+the HAL publishes them. Keep the stock getAllVendorKeys path for this app on
+Lineage too; do not spoof HyperOS globally or force individual capabilities.
+
+Target: flourite Camera 6.4.000320.1 (OS3.0.304.0.WPRMIXM).
+
+diff --git a/smali_classes2/Z5/d.smali b/smali_classes2/Z5/d.smali
+--- a/smali_classes2/Z5/d.smali
++++ b/smali_classes2/Z5/d.smali
+@@ -1950,12 +1950,6 @@
+ 
+     iput-object p2, p0, LZ5/d;->f:Ljava/util/HashSet;
+ 
+-    invoke-static {}, LHh/c;->i()Z
+-
+-    move-result p2
+-
+-    if-eqz p2, :cond_1
+-
+     sget-object p2, Luc/a;->a:Landroid/hardware/camera2/CameraCharacteristics$Key;
+ 
+     invoke-virtual {p1}, Landroid/hardware/camera2/CameraCharacteristics;->getNativeCopy()Landroid/hardware/camera2/impl/CameraMetadataNative;
